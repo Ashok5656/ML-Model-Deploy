@@ -695,36 +695,19 @@ export function MLModelDeploy() {
                         <div className="flex-1 relative bg-white">
                           {uploadFile ? (
                             <>
+                              {/* Filename row */}
+                              <div className="absolute inset-0 bottom-[3px] flex items-center px-4 pr-10">
+                                <p className="text-[13px] text-[#161616] truncate">{uploadFile.name}</p>
+                              </div>
                               {/* X button */}
                               <button
                                 onClick={() => { setUploadFile(null); setUploadProgress(0); setIsFileUploading(false); fileUploaderRef.current?.clearFiles(); }}
-                                className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center text-[#525252] hover:text-[#161616] transition-colors z-10"
+                                className="absolute top-1/2 -translate-y-1/2 right-3 w-5 h-5 flex items-center justify-center text-[#525252] hover:text-[#161616] transition-colors z-10 mb-[1px]"
                               >
-                                <Close size={16} />
+                                <Close size={14} />
                               </button>
-                              {/* Centered file info */}
-                              <div className="absolute inset-0 bottom-[4px] flex items-center px-6 gap-4">
-                                <div className="w-10 h-10 rounded-[8px] bg-[#EDF2FF] flex items-center justify-center shrink-0">
-                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#2A53A0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <polyline points="14,2 14,8 20,8" stroke="#2A53A0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <line x1="8" y1="13" x2="16" y2="13" stroke="#2A53A0" strokeWidth="1.5" strokeLinecap="round"/>
-                                    <line x1="8" y1="17" x2="13" y2="17" stroke="#2A53A0" strokeWidth="1.5" strokeLinecap="round"/>
-                                  </svg>
-                                </div>
-                                <div className="min-w-0">
-                                  <p className="text-[14px] font-semibold text-[#161616] truncate">{uploadFile.name}</p>
-                                  <p className="text-[12px] text-[#525252] mt-0.5">
-                                    {uploadFile.size > 1024 * 1024
-                                      ? `${(uploadFile.size / (1024 * 1024)).toFixed(1)} MB`
-                                      : `${(uploadFile.size / 1024).toFixed(0)} KB`}
-                                    {isFileUploading && <span className="ml-2 text-[#2A53A0]">Uploading… {uploadProgress}%</span>}
-                                    {!isFileUploading && uploadProgress === 100 && <span className="ml-2 text-green-600">Complete</span>}
-                                  </p>
-                                </div>
-                              </div>
-                              {/* Full-width progress bar at bottom */}
-                              <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-[#E0E0E0] overflow-hidden">
+                              {/* Progress bar at bottom */}
+                              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#E0E0E0] overflow-hidden">
                                 <div
                                   className="h-full bg-[#2A53A0] transition-all duration-150"
                                   style={{ width: `${uploadProgress}%` }}
@@ -733,13 +716,7 @@ export function MLModelDeploy() {
                             </>
                           ) : (
                             <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-                              <p className="text-[15px] font-semibold text-[#161616]">No file chosen</p>
-                              <p className="text-[13px] text-[#525252]">
-                                Accepts only{" "}
-                                <span className="text-[#2A53A0] font-medium">.zip</span>{" "}
-                                files up to{" "}
-                                <span className="text-[#2A53A0] font-medium">10MB</span>
-                              </p>
+                              <p className="text-[13px] text-[#525252]">No file chosen</p>
                             </div>
                           )}
                         </div>
