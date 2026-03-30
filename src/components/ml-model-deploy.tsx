@@ -259,7 +259,7 @@ export function MLModelDeploy() {
   const [data, setData] = useState(initialMockData);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [uploadStep, setUploadStep] = useState<"select" | "form">("form");
-  const [uploadModelType, setUploadModelType] = useState("");
+  const [uploadModelType, setUploadModelType] = useState("Event");
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isFileUploading, setIsFileUploading] = useState(false);
@@ -363,7 +363,7 @@ export function MLModelDeploy() {
 
   const resetUploadDialog = () => {
     setUploadStep("form");
-    setUploadModelType("");
+    setUploadModelType("Event");
     setUploadFile(null);
     setUploadProgress(0);
     setIsFileUploading(false);
@@ -608,7 +608,7 @@ export function MLModelDeploy() {
                 {/* Header */}
                 <div className="bg-[#2A53A0] px-6 flex items-center h-[64px] pr-16 shrink-0">
                   <DialogTitle className="text-white text-[16px] font-medium leading-none">
-                    Upload {uploadModelType ? `${uploadModelType} ` : ""}Model
+                    Upload Model
                   </DialogTitle>
                 </div>
 
