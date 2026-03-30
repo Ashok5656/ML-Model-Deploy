@@ -667,8 +667,8 @@ export function MLModelDeploy() {
                       <div className="border border-[#E0E0E0] rounded-[10px] flex overflow-hidden" style={{ minHeight: 120 }}>
 
                         {/* Left panel — description + button */}
-                        <div className="flex flex-col items-start justify-center gap-3 px-6 py-5 bg-white border-r border-[#E0E0E0]" style={{ width: '45%' }}>
-                          <p className="text-[13px] text-[#525252] leading-snug">
+                        <div className="flex flex-col items-center justify-center gap-3 px-6 py-5 bg-white border-r border-[#E0E0E0]" style={{ width: '45%' }}>
+                          <p className="text-[13px] text-[#525252] leading-snug text-center">
                             Max file size is 10MB. Supported file types are .ZIP Only
                           </p>
                           <button
