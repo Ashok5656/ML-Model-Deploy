@@ -696,7 +696,7 @@ export function MLModelDeploy() {
                           {uploadFile ? (
                             <>
                               {/* Filename box with X */}
-                              <div className="flex items-center border border-[#C6C6C6] rounded-[4px] bg-white px-3 h-[40px]">
+                              <div className="flex items-center border border-[#C6C6C6] rounded-[8px] bg-white px-3 h-[48px]">
                                 <p className="flex-1 text-[13px] text-[#161616] truncate min-w-0">{uploadFile.name}</p>
                                 <button
                                   onClick={() => { setUploadFile(null); setUploadProgress(0); setIsFileUploading(false); fileUploaderRef.current?.clearFiles(); }}
