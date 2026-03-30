@@ -117,7 +117,7 @@ export default function App() {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [username, setUsername] = useState("Rajesh Kumar");
   const [userRole, setUserRole] = useState("System Administrator");
-  const [activeItem, _setActiveItem] = useState("config-ml-model-deploy");
+  const [activeItem, _setActiveItem] = useState("config-entity-tagging");
   const [refreshKey, setRefreshKey] = useState(0);
 
   const setActiveItem = (item: string) => {

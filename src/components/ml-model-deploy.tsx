@@ -258,7 +258,7 @@ const DEFAULT_COLUMNS: ColDef[] = [
 export function MLModelDeploy() {
   const [data, setData] = useState(initialMockData);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [uploadStep, setUploadStep] = useState<"select" | "form">("select");
+  const [uploadStep, setUploadStep] = useState<"select" | "form">("form");
   const [uploadModelType, setUploadModelType] = useState("");
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -362,7 +362,7 @@ export function MLModelDeploy() {
   };
 
   const resetUploadDialog = () => {
-    setUploadStep("select");
+    setUploadStep("form");
     setUploadModelType("");
     setUploadFile(null);
     setUploadProgress(0);
@@ -602,52 +602,61 @@ export function MLModelDeploy() {
                   Upload Model <CloudUpload className="size-4 ml-1.5" />
                 </ShimmerButton>
               </DialogTrigger>
-              <DialogContent className={cn(
-                "!flex !flex-col p-0 gap-0 overflow-hidden rounded-[8px] border-0 shadow-xl [&>button:last-child]:text-white [&>button:last-child]:top-4 [&>button:last-child]:right-4",
-                uploadStep === "form"
-                  ? "!max-w-[1200px] !w-[1200px] !h-[750px]"
-                  : "!max-w-[560px] !w-[560px]"
-              )}>
+              <DialogContent className="!flex !flex-col p-0 gap-0 overflow-hidden rounded-[8px] border-0 shadow-xl !max-w-[1200px] !w-[1200px] !h-[750px] [&>button:last-child]:text-white [&>button:last-child]:top-4 [&>button:last-child]:right-4">
                 <DialogDescription className="sr-only">Upload a new ML model</DialogDescription>
 
-                {/* Carbon DS Header */}
+                {/* Header */}
                 <div className="bg-[#2A53A0] px-6 flex items-center h-[64px] pr-16 shrink-0">
                   <DialogTitle className="text-white text-[16px] font-medium leading-none">
-                    {uploadStep === "select" ? "Upload Model" : `Upload ${uploadModelType} Model`}
+                    Upload {uploadModelType ? `${uploadModelType} ` : ""}Model
                   </DialogTitle>
                 </div>
 
-                {/* Step 1 — Select model type */}
-                {uploadStep === "select" && (
-                  <div className="p-6 bg-white flex-1 overflow-auto">
-                    <p className="text-[14px] text-[#525252] mb-5">Select the model type you want to upload</p>
-                    <div className="grid grid-cols-3 gap-4">
-                      {([
-                        { type: "Event",  Icon: Events,     desc: "Event-based fraud detection" },
-                        { type: "Alert",  Icon: Cognitive,  desc: "Alert scoring & classification" },
-                        { type: "Mule",   Icon: DataBase,   desc: "Mule integration model" },
-                      ] as const).map(({ type, Icon, desc }) => (
-                        <button
-                          key={type}
-                          onClick={() => { setUploadModelType(type); setUploadStep("form"); }}
-                          className="flex flex-col items-center gap-3 p-5 border-2 border-[#E0E0E0] rounded-[8px] hover:border-[#2A53A0] hover:bg-[#F0F4FF] transition-all group"
-                        >
-                          <div className="w-12 h-12 rounded-full bg-[#EDF2FF] group-hover:bg-[#2A53A0] flex items-center justify-center transition-colors shrink-0">
-                            <Icon className="size-6 text-[#2A53A0] group-hover:text-white transition-colors" />
-                          </div>
-                          <div className="text-center">
-                            <p className="text-[14px] font-medium text-[#161616]">{type}</p>
-                            <p className="text-[12px] text-[#525252] mt-1 leading-tight">{desc}</p>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 2 — Upload form */}
+                {/* Upload form */}
                 {uploadStep === "form" && (
                   <div className="p-6 bg-white flex-1 flex flex-col gap-5 overflow-auto min-h-0">
+
+                    {/* Model Type — radio buttons */}
+                    <div>
+                      <p className="text-[14px] font-medium text-[#161616] mb-3">
+                        Model Type<span className="text-red-500">*</span>
+                      </p>
+                      <div className="flex items-center gap-6">
+                        {(["Event", "Alert", "Mule"] as const).map((type) => (
+                          <label
+                            key={type}
+                            className="flex items-center gap-2 cursor-pointer select-none group"
+                          >
+                            <input
+                              type="radio"
+                              name="uploadModelType"
+                              value={type}
+                              checked={uploadModelType === type}
+                              onChange={() => setUploadModelType(type)}
+                              className="hidden"
+                            />
+                            <div className={cn(
+                              "w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors",
+                              uploadModelType === type
+                                ? "border-[#2A53A0]"
+                                : "border-[#C6C6C6] group-hover:border-[#2A53A0]"
+                            )}>
+                              {uploadModelType === type && (
+                                <div className="w-[8px] h-[8px] rounded-full bg-[#2A53A0]" />
+                              )}
+                            </div>
+                            <span className={cn(
+                              "text-[14px] transition-colors",
+                              uploadModelType === type
+                                ? "font-medium text-[#161616]"
+                                : "text-[#525252] group-hover:text-[#161616]"
+                            )}>
+                              {type}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
 
                     {/* Upload Model File — two-panel layout */}
                     <div>
