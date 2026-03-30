@@ -272,6 +272,7 @@ export function MLModelDeploy() {
   const [tempColumns, setTempColumns] = useState<ColDef[]>(DEFAULT_COLUMNS);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [isColumnUpdating, setIsColumnUpdating] = useState(false);
+  const [isColumnUpdateSuccess, setIsColumnUpdateSuccess] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [modelToDelete, setModelToDelete] = useState<any>(null);
@@ -518,6 +519,7 @@ export function MLModelDeploy() {
       setColumns([...tempColumns]);
       setIsColumnUpdating(false);
       setIsColumnSettingsOpen(false);
+      setIsColumnUpdateSuccess(true);
     }, 1500);
   };
 
@@ -552,6 +554,34 @@ export function MLModelDeploy() {
       {isDeploying && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30">
           <SnowflakeLoader message="Deploying model..." />
+        </div>
+      )}
+
+      {/* ── Column update success dialog ── */}
+      {isColumnUpdateSuccess && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30">
+          <div
+            style={{ width: 360, height: 262, minWidth: 360, maxWidth: 360, minHeight: 262, maxHeight: 262 }}
+            className="bg-white rounded-[16px] shadow-2xl overflow-hidden flex flex-col"
+          >
+            <div className="flex flex-col items-center justify-center flex-1 px-8 gap-4">
+              <div className="w-[36px] h-[36px] rounded-full border-[3px] border-[#2A53A0] flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="#2A53A0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <p className="text-[20px] font-semibold text-[#2A53A0]">Updated</p>
+              <p className="text-[14px] text-[#525252] text-center leading-snug">
+                Column Display settings<br/>Updated Successfully
+              </p>
+            </div>
+            <button
+              onClick={() => setIsColumnUpdateSuccess(false)}
+              className="w-full h-[52px] bg-[#2A53A0] hover:bg-[#1e3a70] text-white text-[15px] font-medium transition-colors shrink-0"
+            >
+              Continue
+            </button>
+          </div>
         </div>
       )}
 
@@ -1097,12 +1127,16 @@ export function MLModelDeploy() {
             <button
               onClick={applyColumnSettings}
               disabled={isColumnUpdating}
-              className="flex-1 text-[14px] font-medium text-white bg-[#2A53A0] hover:bg-[#1e3a70] disabled:bg-[#2A53A0] rounded-br-[8px] transition-colors flex items-center justify-center gap-2"
+              className={`flex-1 text-[14px] font-medium rounded-br-[8px] transition-colors flex items-center justify-center gap-2 ${
+                isColumnUpdating
+                  ? "text-[#2A53A0] bg-white"
+                  : "text-white bg-[#2A53A0] hover:bg-[#1e3a70]"
+              }`}
             >
               {isColumnUpdating ? (
                 <>
                   <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" strokeDasharray="32" strokeDashoffset="12" strokeLinecap="round"/>
+                    <circle cx="12" cy="12" r="10" stroke="#2A53A0" strokeWidth="3" strokeDasharray="32" strokeDashoffset="12" strokeLinecap="round"/>
                   </svg>
                   Please wait it's Loading
                 </>
