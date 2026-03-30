@@ -692,7 +692,7 @@ export function MLModelDeploy() {
                         </div>
 
                         {/* Right panel — file state */}
-                        <div className="flex-1 relative bg-white">
+                        <div className="flex-1 relative bg-[#F4F4F4]">
                           {uploadFile ? (
                             <>
                               {/* Filename row */}
