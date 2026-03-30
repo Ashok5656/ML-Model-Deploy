@@ -1,0 +1,220 @@
+/* ── Carbon FileUploader — default appearance (matches Carbon Design System)
+   Scoped inside .carbon-upload-wrapper to avoid app-wide conflicts.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* ── Root wrapper ────────────────────────────────────────────────────────── */
+.carbon-upload-wrapper,
+.carbon-upload-wrapper .cds--form-item,
+.carbon-upload-wrapper .cds--file {
+  width: 100%;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* ── Label title  ("Upload files") ──────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file--label {
+  display: block;
+  font-size: 0.875rem;       /* 14px */
+  font-weight: 600;
+  line-height: 1.29;
+  color: #161616;
+  margin-bottom: 0.5rem;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* ── Description text  ("Max file size is …") ───────────────────────────── */
+.carbon-upload-wrapper .cds--label-description {
+  display: block;
+  font-size: 0.75rem;        /* 12px */
+  font-weight: 400;
+  line-height: 1.34;
+  color: #525252;
+  margin-bottom: 1rem;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* ── "Add file" button ───────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file__drop-container,
+.carbon-upload-wrapper .cds--file-browse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;              /* 48px — Carbon md button */
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0;          /* Carbon buttons are square */
+  background-color: #0f62fe; /* Carbon IBM Blue 60 */
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+  letter-spacing: 0.16px;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  transition: background-color 70ms cubic-bezier(0,0,0.38,0.9);
+}
+
+.carbon-upload-wrapper .cds--file__drop-container:hover,
+.carbon-upload-wrapper .cds--file-browse-btn:hover {
+  background-color: #0043ce; /* Carbon IBM Blue 70 */
+}
+
+.carbon-upload-wrapper .cds--file__drop-container:active,
+.carbon-upload-wrapper .cds--file-browse-btn:active {
+  background-color: #002d9c;
+}
+
+.carbon-upload-wrapper .cds--file__drop-container:focus,
+.carbon-upload-wrapper .cds--file-browse-btn:focus {
+  outline: 2px solid #0f62fe;
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #ffffff;
+}
+
+/* ── File list ───────────────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file-container,
+.carbon-upload-wrapper .cds--file-container--drop {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Individual file item ────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file__selected-file {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 3rem;          /* 48px */
+  padding: 0 1rem;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  background: #f4f4f4;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+.carbon-upload-wrapper .cds--file__selected-file:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* ── Filename ────────────────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file-filename,
+.carbon-upload-wrapper .cds--file-filename-button {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.29;
+  color: #161616;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: none;
+  border: none;
+  cursor: default;
+  padding: 0;
+  text-align: left;
+}
+
+/* ── Tooltip filename wrapper ────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file-filename-tooltip {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── Right-side actions area ─────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file-container-item {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  gap: 0;
+}
+
+.carbon-upload-wrapper .cds--file__state-container {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Close / edit icon button ────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file__state-container button,
+.carbon-upload-wrapper .cds--file__state-container [role="button"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #161616;
+  padding: 0;
+  transition: background-color 70ms;
+}
+
+.carbon-upload-wrapper .cds--file__state-container button:hover {
+  background-color: #e8e8e8;
+}
+
+.carbon-upload-wrapper .cds--file__state-container svg {
+  width: 1rem;
+  height: 1rem;
+  fill: #161616;
+}
+
+/* ── Loading spinner ─────────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--inline-loading__animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.carbon-upload-wrapper .cds--loading--small {
+  width: 1.25rem;
+  height: 1.25rem;
+  animation: rotate 690ms linear infinite;
+}
+
+.carbon-upload-wrapper .cds--loading__svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.carbon-upload-wrapper .cds--loading__svg circle {
+  stroke: #0f62fe;
+  fill: none;
+  stroke-dasharray: 15;
+  stroke-dashoffset: 0;
+  stroke-linecap: butt;
+  stroke-width: 4;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Checkmark (complete) ────────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file__state-container .cds--file__complete-icon {
+  fill: #0f62fe;
+}
+
+/* ── Invalid / error states ──────────────────────────────────────────────── */
+.carbon-upload-wrapper .cds--file__selected-file--invalid {
+  border-color: #da1e28;
+  outline: 2px solid #da1e28;
+  outline-offset: -2px;
+}
+
+.carbon-upload-wrapper .cds--form-requirement {
+  font-size: 0.75rem;
+  color: #da1e28;
+  margin-top: 0.25rem;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
