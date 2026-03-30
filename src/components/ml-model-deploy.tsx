@@ -692,22 +692,21 @@ export function MLModelDeploy() {
                         </div>
 
                         {/* Right panel — file state */}
-                        <div className="flex-1 relative bg-[#F4F4F4]">
+                        <div className="flex-1 bg-white flex flex-col justify-center px-4 py-4 gap-2">
                           {uploadFile ? (
                             <>
-                              {/* Filename row */}
-                              <div className="absolute inset-0 bottom-[3px] flex items-center px-4 pr-10">
-                                <p className="text-[13px] text-[#161616] truncate">{uploadFile.name}</p>
+                              {/* Filename box with X */}
+                              <div className="flex items-center border border-[#C6C6C6] rounded-[4px] bg-white px-3 h-[40px]">
+                                <p className="flex-1 text-[13px] text-[#161616] truncate min-w-0">{uploadFile.name}</p>
+                                <button
+                                  onClick={() => { setUploadFile(null); setUploadProgress(0); setIsFileUploading(false); fileUploaderRef.current?.clearFiles(); }}
+                                  className="ml-2 w-5 h-5 flex items-center justify-center text-[#525252] hover:text-[#161616] transition-colors shrink-0"
+                                >
+                                  <Close size={14} />
+                                </button>
                               </div>
-                              {/* X button */}
-                              <button
-                                onClick={() => { setUploadFile(null); setUploadProgress(0); setIsFileUploading(false); fileUploaderRef.current?.clearFiles(); }}
-                                className="absolute top-1/2 -translate-y-1/2 right-3 w-5 h-5 flex items-center justify-center text-[#525252] hover:text-[#161616] transition-colors z-10 mb-[1px]"
-                              >
-                                <Close size={14} />
-                              </button>
-                              {/* Progress bar at bottom */}
-                              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#E0E0E0] overflow-hidden">
+                              {/* Progress bar */}
+                              <div className="w-full h-[3px] bg-[#E0E0E0] rounded-full overflow-hidden">
                                 <div
                                   className="h-full bg-[#2A53A0] transition-all duration-150"
                                   style={{ width: `${uploadProgress}%` }}
@@ -715,9 +714,7 @@ export function MLModelDeploy() {
                               </div>
                             </>
                           ) : (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-                              <p className="text-[13px] text-[#525252]">No file chosen</p>
-                            </div>
+                            <p className="text-[13px] text-[#525252] text-center w-full">No file chosen</p>
                           )}
                         </div>
 
