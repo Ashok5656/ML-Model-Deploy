@@ -117,7 +117,7 @@ export default function App() {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [username, setUsername] = useState("Rajesh Kumar");
   const [userRole, setUserRole] = useState("System Administrator");
-  const [activeItem, _setActiveItem] = useState("config-entity-tagging");
+  const [activeItem, _setActiveItem] = useState("config-ml-model-deploy");
   const [refreshKey, setRefreshKey] = useState(0);
 
   const setActiveItem = (item: string) => {
@@ -198,10 +198,10 @@ export default function App() {
         breadcrumbs: [{ label: menu.title, path: menu.id, isActive: true }]
       };
     }
-    return { 
-      title: "Entity Tagging", 
-      icon: Identification,
-      breadcrumbs: [{ label: "CONFIG", path: "config" }, { label: "Entity Tagging", path: "config-entity-tagging", isActive: true }]
+    return {
+      title: "ML Model Deploy",
+      icon: Cognitive,
+      breadcrumbs: [{ label: "CONFIG", path: "config" }, { label: "ML Model Deploy", path: "config-ml-model-deploy", isActive: true }]
     };
   };
 
