@@ -271,6 +271,7 @@ export function MLModelDeploy() {
   const [isColumnSettingsOpen, setIsColumnSettingsOpen] = useState(false);
   const [tempColumns, setTempColumns] = useState<ColDef[]>(DEFAULT_COLUMNS);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [isColumnUpdating, setIsColumnUpdating] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [modelToDelete, setModelToDelete] = useState<any>(null);
@@ -512,8 +513,12 @@ export function MLModelDeploy() {
   const handleColDrop = () => setDragIndex(null);
 
   const applyColumnSettings = () => {
-    setColumns([...tempColumns]);
-    setIsColumnSettingsOpen(false);
+    setIsColumnUpdating(true);
+    setTimeout(() => {
+      setColumns([...tempColumns]);
+      setIsColumnUpdating(false);
+      setIsColumnSettingsOpen(false);
+    }, 1500);
   };
 
   const visibleColumns = columns.filter(c => c.visible);
@@ -1044,7 +1049,7 @@ export function MLModelDeploy() {
           {/* Dark Carbon header */}
           <div className="bg-[#2A53A0] px-4 flex items-center h-[64px] pr-16">
             <DialogTitle className="text-white text-[16px] font-medium leading-none">
-              Column Settings
+              Choose fields to show on ML Model List
             </DialogTitle>
           </div>
           {/* Scrollable column list */}
@@ -1081,25 +1086,29 @@ export function MLModelDeploy() {
               </div>
             ))}
           </div>
-          {/* Carbon DS footer */}
-          <div className="bg-[#F4F4F4] h-[64px] flex items-stretch border-t border-[#E0E0E0]">
+          {/* Footer */}
+          <div className="bg-white h-[64px] flex items-stretch border-t border-[#E0E0E0]">
             <button
-              onClick={() => setIsColumnSettingsOpen(false)}
-              className="flex-1 text-[14px] font-medium text-[#161616] hover:bg-[#E5E5E5] border-r border-[#E0E0E0] rounded-bl-[8px] transition-colors"
+              onClick={() => { setIsColumnSettingsOpen(false); setIsColumnUpdating(false); }}
+              className="flex-1 text-[14px] font-medium text-[#2A53A0] hover:bg-[#F4F4F4] border-r border-[#E0E0E0] rounded-bl-[8px] transition-colors"
             >
               Cancel
             </button>
             <button
-              onClick={() => setTempColumns([...DEFAULT_COLUMNS])}
-              className="flex-1 text-[14px] font-medium text-[#2A53A0] hover:bg-[#E5E5E5] border-r border-[#E0E0E0] transition-colors"
-            >
-              Reset to Default
-            </button>
-            <button
               onClick={applyColumnSettings}
-              className="flex-1 text-[14px] font-medium text-white bg-[#2A53A0] hover:bg-[#1e3a70] rounded-br-[8px] transition-colors"
+              disabled={isColumnUpdating}
+              className="flex-1 text-[14px] font-medium text-white bg-[#2A53A0] hover:bg-[#1e3a70] disabled:bg-[#2A53A0] rounded-br-[8px] transition-colors flex items-center justify-center gap-2"
             >
-              Apply
+              {isColumnUpdating ? (
+                <>
+                  <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" strokeDasharray="32" strokeDashoffset="12" strokeLinecap="round"/>
+                  </svg>
+                  Please wait it's Loading
+                </>
+              ) : (
+                "Update ML Model List Fields"
+              )}
             </button>
           </div>
         </DialogContent>
