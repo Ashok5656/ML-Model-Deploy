@@ -1,4 +1,5 @@
 import * as React from "react";
+import clari5Logo from "../../assets/Clari5 Favicon.png";
 
 const C = "#29ABE2";
 
@@ -93,8 +94,11 @@ export function SnowflakeLoader({ message = "Loading...." }: { message?: string 
       }}
       className="flex items-center gap-3 px-5 bg-white border border-[#D1D5DB] rounded-[12px] shadow-sm overflow-hidden"
     >
-      <SnowflakeSVG
-        size={46}
+      <img
+        src={clari5Logo}
+        alt="Clari5"
+        width={46}
+        height={46}
         style={{ animation: "spin 1.4s linear infinite", flexShrink: 0 }}
       />
       <span className="text-[14px] text-[#525252] font-medium whitespace-nowrap">
