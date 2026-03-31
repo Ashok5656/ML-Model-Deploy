@@ -12,9 +12,9 @@ import {
   Search,
   Subtract
 } from "@carbon/icons-react";
-import clari5Logo from "figma:asset/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
-import clari5Favicon from "figma:asset/4695cc06ada82390ec617ae2b76764d7dd803fe5.png";
-import institutionLogo from "figma:asset/3ea1d39dbe6397aeec1aa1f46900a6cbfdf8c1c4.png";
+import clari5Logo from "../assets/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
+import clari5Favicon from "../assets/Clari5 Favicon.png";
+import institutionLogo from "../assets/3ea1d39dbe6397aeec1aa1f46900a6cbfdf8c1c4.png";
 
 // Define a generic Icon type for Carbon icons
 type CarbonIcon = React.ComponentType<any>;

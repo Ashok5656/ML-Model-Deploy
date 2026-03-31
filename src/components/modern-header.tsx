@@ -62,7 +62,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Label } from "./ui/label";
-import clari5Logo from "figma:asset/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
+import clari5Logo from "../assets/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
 import { GlobalSearch, SearchResult } from "./global-search";
 import { KeyboardShortcuts, useKeyboardShortcuts } from "./keyboard-shortcuts";
 import { Badge } from "./ui/badge";

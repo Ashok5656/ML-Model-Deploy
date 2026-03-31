@@ -1,5 +1,5 @@
 import svgPaths from "./svg-6gpx7ss51c";
-import imgImageClari5 from "figma:asset/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
+import imgImageClari5 from "../../assets/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
 
 function ImageClari() {
   return (

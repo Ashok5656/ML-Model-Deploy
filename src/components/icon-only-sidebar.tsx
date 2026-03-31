@@ -11,8 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import clari5Logo from "figma:asset/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
-import clari5Favicon from "figma:asset/4695cc06ada82390ec617ae2b76764d7dd803fe5.png";
+import clari5Logo from "../assets/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
+import clari5Favicon from "../assets/Clari5 Favicon.png";
 
 interface SubMenuItem {
   id: string;

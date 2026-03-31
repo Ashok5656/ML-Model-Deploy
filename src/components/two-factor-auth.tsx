@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Shield, Smartphone, Mail, ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import clari5Logo from "figma:asset/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
+import clari5Logo from "../assets/6dfdb4c1a68d250267231b32de1f1a07e05b6acf.png";
 
 interface TwoFactorAuthProps {
   username: string;
